@@ -1,4 +1,4 @@
-import { SignInBodyDto, SignUpBodyDto } from './dto';
+import { GetSessionInfoDto, SignInBodyDto, SignUpBodyDto } from './dto';
 import { AuthService } from './auth.service';
 import { Response } from 'express';
 import { CookieService } from './cookie.service';
@@ -8,6 +8,6 @@ export declare class AuthController {
     constructor(authService: AuthService, cookieService: CookieService);
     signUp(body: SignUpBodyDto, res: Response): Promise<void>;
     signIn(body: SignInBodyDto, res: Response): Promise<void>;
-    signOut(): null;
-    getSessionInfo(): null;
+    signOut(res: Response): null;
+    getSessionInfo(session: GetSessionInfoDto): GetSessionInfoDto;
 }

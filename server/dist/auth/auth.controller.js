@@ -18,6 +18,8 @@ const swagger_1 = require("@nestjs/swagger");
 const dto_1 = require("./dto");
 const auth_service_1 = require("./auth.service");
 const cookie_service_1 = require("./cookie.service");
+const auth_guard_1 = require("./auth.guard");
+const session_info_decorator_1 = require("./session-info.decorator");
 let AuthController = class AuthController {
     constructor(authService, cookieService) {
         this.authService = authService;
@@ -31,11 +33,12 @@ let AuthController = class AuthController {
         const { accessToken } = await this.authService.signIn(body.email, body.password);
         this.cookieService.setToken(res, accessToken);
     }
-    signOut() {
+    signOut(res) {
+        this.cookieService.removeToken(res);
         return null;
     }
-    getSessionInfo() {
-        return null;
+    getSessionInfo(session) {
+        return session;
     }
 };
 exports.AuthController = AuthController;
@@ -62,8 +65,10 @@ __decorate([
     (0, common_1.Post)('sign-out'),
     (0, swagger_1.ApiOkResponse)(),
     (0, common_1.HttpCode)(common_1.HttpStatus.OK),
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
+    __param(0, (0, common_1.Res)({ passthrough: true })),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "signOut", null);
 __decorate([
@@ -71,8 +76,10 @@ __decorate([
     (0, swagger_1.ApiOkResponse)({
         type: dto_1.GetSessionInfoDto,
     }),
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
+    __param(0, (0, session_info_decorator_1.SessionInfo)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [dto_1.GetSessionInfoDto]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "getSessionInfo", null);
 exports.AuthController = AuthController = __decorate([
