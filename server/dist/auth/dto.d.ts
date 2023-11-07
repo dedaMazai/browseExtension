@@ -9,4 +9,6 @@ export declare class SignInBodyDto {
 export declare class GetSessionInfoDto {
     id: number;
     email: string;
+    iat: number;
+    exp: number;
 }

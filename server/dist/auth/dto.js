@@ -52,4 +52,12 @@ __decorate([
     (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], GetSessionInfoDto.prototype, "email", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Number)
+], GetSessionInfoDto.prototype, "iat", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    __metadata("design:type", Number)
+], GetSessionInfoDto.prototype, "exp", void 0);
 //# sourceMappingURL=dto.js.map
