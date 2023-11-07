@@ -1,0 +1,8 @@
+/cache/
+*node_modules/
+/build
+.vscode
+*.log
+.babelrc
+*.env
+.idea

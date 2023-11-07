@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14.1-alpine
+    restart: always // при ошибка постоянно перезапускаться
+    environment: // переменные окружения
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432' // 'системный:внутренний' чтобы использовать базу из вне контейнера
+    volumes:
+      - db:/var/lib/postgresql/data // чтобы данные не стирались при перезагрузке
+volumes:
+  db:
