@@ -8,7 +8,7 @@ export class BlockItemDto {
   id: number;
 
   @ApiProperty()
-  blockList: number;
+  blockListId: number;
 
   @ApiProperty({
     enum: [$Enums.BlockItemType.KeyWord, $Enums.BlockItemType.Website],
@@ -32,12 +32,12 @@ export class BlockListDto {
   @ApiProperty({
     type: [BlockItemDto],
   })
-  items: BlockListDto[];
+  items: BlockItemDto[];
 }
 
 export class BlockListQueryDto {
   @ApiProperty({
-    nullable: true,
+    required: false,
   })
   @IsOptional()
   q?: string;

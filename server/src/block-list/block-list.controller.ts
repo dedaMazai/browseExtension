@@ -53,7 +53,7 @@ export class BlockListController {
     type: 'number',
   })
   async removeBlockItem(
-    @Param(ParseIntPipe) id: number,
+    @Param('id', ParseIntPipe) id: number,
     // так как нам приходит значение в виде строки необходимо его преобразовать в число
     @SessionInfo() session: GetSessionInfoDto,
   ): Promise<BlockItemDto> {
