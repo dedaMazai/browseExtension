@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { $Enums } from '@prisma/client';
-import { IsIn } from 'class-validator';
+import { IsIn, IsOptional } from 'class-validator';
 
 // DTO (Data Transfer Object)
 export class BlockItemDto {
@@ -33,6 +33,14 @@ export class BlockListDto {
     type: [BlockItemDto],
   })
   items: BlockListDto[];
+}
+
+export class BlockListQueryDto {
+  @ApiProperty({
+    nullable: true,
+  })
+  @IsOptional()
+  q?: string;
 }
 
 export class AddBlockItemDto {
