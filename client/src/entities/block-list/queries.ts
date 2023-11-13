@@ -29,7 +29,7 @@ export function useRemoveBlockItemMutation() {
   const queyrClient = useQueryClient();
   return useMutation({
     mutationFn: blockListControllerRemoveBlockItem,
-    async onSettled() {
+    async onSettled() { // чтобы игнорировать ошибки
       await queyrClient.invalidateQueries(blockListKey);
     },
   });
